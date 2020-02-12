@@ -6,7 +6,7 @@
 # http://www.eclipse.org/legal/epl-v10.html
 
 set -e
-set +x
+set -x
 
 source tests/.infra/centos-ci/functional_tests_utils.sh
 
