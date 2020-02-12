@@ -33,15 +33,22 @@ installAndStartMinishift
 loginToOpenshiftAndSetDevRole
 prepareCustomResourceFile
 installCheCtl
-
 deployCheIntoCluster  --chenamespace=eclipse-che --che-operator-cr-yaml=/tmp/custom-resource.yaml
 createIndentityProvider
 seleniumTestsSetup
 
-#bash tests/legacy-e2e/che-selenium-test/selenium-tests.sh --threads=1 --host=${CHE_ROUTE} --port=80 --multiuser --test=CreateAndDeleteProjectsTest
-#bash tests/legacy-e2e/che-selenium-test/selenium-tests.sh --threads=4 --host=${CHE_ROUTE} --port=80 --multiuser --test=org.eclipse.che.selenium.dashboard.**
-bash tests/legacy-e2e/che-selenium-test/selenium-tests.sh --threads=4 --host=${CHE_ROUTE} --port=80 --multiuser
+bash /root/payload/tests/legacy-e2e/che-selenium-test/selenium-tests.sh \
+   --threads=4 \
+   --host=${CHE_ROUTE} \
+   --port=80 \
+   --multiuser \
+   --fail-script-on-failed-tests \
+   || IS_TESTS_FAILED=true
 
+
+echo "=========================== THIS IS POST TEST ACTIONS =============================="
 saveSeleniumTestResult
 getOpenshiftLogs
 archiveArtifacts "rc-multiuser-integration-tests"
+
+[[ $IS_TESTS_FAILED == true ]] && exit 1

@@ -24,21 +24,5 @@ function prepareCustomResourceFile() {
   cat /tmp/custom-resource.yaml
 }
 
-setupEnvs
-installDependencies
-setupReleaseVersionAndTag
-installDockerCompose
-installKVM
-installAndStartMinishift
-loginToOpenshiftAndSetDevRole
-prepareCustomResourceFile
-installCheCtl
-
-deployCheIntoCluster  --chenamespace=eclipse-che --che-operator-cr-yaml=/tmp/custom-resource.yaml
-seleniumTestsSetup
-
-bash tests/legacy-e2e/che-selenium-test/selenium-tests.sh --threads=1 --host=${CHE_ROUTE} --port=80 --multiuser --test=org.eclipse.che.selenium.hotupdate.recreate.**
-
-saveSeleniumTestResult
-getOpenshiftLogs
-archiveArtifacts "rc-recreate-strategy-test"
+# Now this functionality is unavailable. See the https://github.com/eclipse/che/issues/15915
+# Perhaps, the job and bash-script will be renamed and updated.
