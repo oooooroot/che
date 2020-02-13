@@ -51,4 +51,4 @@ saveSeleniumTestResult
 getOpenshiftLogs
 archiveArtifacts "rc-ocp-oauth-test"
 
-[[ $IS_TESTS_FAILED == true ]] && exit 1
+if [[ "$IS_TESTS_FAILED" == "true" ]]; then exit 1; fi

@@ -51,4 +51,4 @@ saveSeleniumTestResult
 getOpenshiftLogs
 archiveArtifacts "rc-multiuser-integration-tests"
 
-[[ $IS_TESTS_FAILED == true ]] && exit 1
+if [[ "$IS_TESTS_FAILED" == "true" ]]; then exit 1; fi

@@ -50,4 +50,4 @@ saveSeleniumTestResult
 getOpenshiftLogs
 archiveArtifacts "rc-rolling-strategy-test"
 
-[[ $IS_TESTS_FAILED == true ]] && exit 1
+if [[ "$IS_TESTS_FAILED" == "true" ]]; then exit 1; fi
