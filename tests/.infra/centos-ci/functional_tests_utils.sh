@@ -328,7 +328,7 @@ createTestWorkspaceAndRunTest() {
   -e TS_SELENIUM_USERNAME="${TEST_USERNAME}" \
   -e TS_SELENIUM_PASSWORD="${TEST_USERNAME}" \
   -e TS_SELENIUM_LOAD_PAGE_TIMEOUT=420000 \
-  quay.io/eclipse/che-e2e:nightly ||IS_TESTS_FAILED=true
+  quay.io/eclipse/che-e2e:nightly || IS_TESTS_FAILED=true
 }
 
 function createTestUserAndObtainUserToken() {

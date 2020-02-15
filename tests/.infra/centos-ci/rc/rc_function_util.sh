@@ -11,7 +11,6 @@ function prepareCustomResourceFile() {
   cd /tmp
   wget https://raw.githubusercontent.com/eclipse/che-operator/master/deploy/crds/org_v1_che_cr.yaml -O custom-resource.yaml
   setOpenShiftoAuth=$1 # sets the value of 'openShiftoAuth' parameter
-  echo "======= openShiftoAuth:" ${setOpenShiftoAuth}
   sed -i "s@openShiftoAuth: false@openShiftoAuth: $1@g" /tmp/custom-resource.yaml
   sed -i "s@server:@server:\n    customCheProperties:\n      CHE_LIMITS_USER_WORKSPACES_RUN_COUNT: '-1'@g" /tmp/custom-resource.yaml
   sed -i "s/customCheProperties:/customCheProperties:\n      CHE_WORKSPACE_AGENT_DEV_INACTIVE__STOP__TIMEOUT__MS: '300000'/" /tmp/custom-resource.yaml
