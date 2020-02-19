@@ -967,7 +967,6 @@ run() {
     checkParameters $@
     defineOperationSystemSpecificVariables
     defineRunMode $@
-    defineRunMode $@
 
     defineTestsScope $@
     applyCustomOptions $@
