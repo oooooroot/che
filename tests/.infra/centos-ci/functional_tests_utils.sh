@@ -315,7 +315,7 @@ createTestWorkspaceAndRunTest() {
   if [[ ${DEV_FILE_URL} = "" ]]; then # by default it is used 'happy-path-devfile' yaml from CHE 'master' branch
     chectl workspace:start --access-token "$USER_ACCESS_TOKEN" --devfile=https://raw.githubusercontent.com/eclipse/che/master/tests/e2e/files/happy-path/happy-path-workspace.yaml
   else
-    chectl workspace:start --access-token "$USER_ACCESS_TOKEN" $1 # it can be obviously indicated other URL to 'devfile' yaml
+    chectl workspace:start --access-token "$USER_ACCESS_TOKEN" $1 # it can be directly indicated other URL to 'devfile' yaml
   fi
 
   ### Create directory for report
@@ -441,10 +441,9 @@ function getReleaseVersion() {
 }
 
 function setupReleaseVersionAndTag() {
-  echo "======== Starting RH-Che RC check $(date) ========"
+  echo "======== Starting Che RC test job $(date) ========"
   RELEASE_VERSION=$(getReleaseVersion)
-  #RELEASE_TAG="rc" # Switch on back after debug
-  RELEASE_TAG=$(getReleaseVersion)
+  RELEASE_TAG="rc"
 
   echo "======== Release version:" ${RELEASE_VERSION}
   echo "======== Release tag:" ${RELEASE_TAG}
